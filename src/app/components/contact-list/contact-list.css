@@ -1,0 +1,126 @@
+.contact-list {
+	max-width: 1120px;
+	margin: 0 auto;
+	padding: clamp(1rem, 2vw, 2rem);
+	background: rgba(255, 255, 255, 0.66);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.7);
+	border-radius: 22px;
+	box-shadow: 0 20px 55px rgba(40, 59, 87, 0.12);
+	animation: rise-in 650ms ease-out both;
+}
+
+.contact-list__header {
+	margin-bottom: 1.8rem;
+}
+
+.contact-list__eyebrow {
+	margin: 0;
+	font-size: 0.8rem;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: #0f8b8d;
+}
+
+.contact-list__header h1 {
+	margin: 0.2rem 0 0;
+	font-size: clamp(1.65rem, 2.8vw, 2.3rem);
+	line-height: 1.1;
+	color: #132034;
+}
+
+.contact-list__header p {
+	margin: 0.55rem 0 0;
+	font-size: 1.05rem;
+	color: #4a6282;
+}
+
+.contact-list__summary {
+	margin-top: 1rem;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6rem;
+}
+
+.contact-list__summary span {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.32rem 0.75rem;
+	border-radius: 999px;
+	font-size: 0.9rem;
+	font-weight: 700;
+	color: #1f3c58;
+	background: linear-gradient(120deg, rgba(15, 139, 141, 0.14), rgba(15, 139, 141, 0.04));
+	border: 1px solid rgba(15, 139, 141, 0.18);
+}
+
+.contact-list__empty {
+	margin-top: 1rem;
+	padding: 1rem 1.1rem;
+	border-radius: 14px;
+	background: linear-gradient(135deg, rgba(255, 238, 204, 0.9), rgba(255, 248, 232, 0.95));
+	color: #8d4d00;
+	border: 1px solid #ffc978;
+	font-weight: 600;
+}
+
+.contact-list__grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 1.1rem;
+}
+
+.contact-list__grid app-contact-card {
+	display: block;
+	animation: tile-in 450ms ease-out both;
+}
+
+.contact-list__grid app-contact-card:nth-child(2) {
+	animation-delay: 70ms;
+}
+
+.contact-list__grid app-contact-card:nth-child(3) {
+	animation-delay: 130ms;
+}
+
+.contact-list__grid app-contact-card:nth-child(4) {
+	animation-delay: 190ms;
+}
+
+.contact-list__grid app-contact-card:nth-child(5) {
+	animation-delay: 250ms;
+}
+
+@keyframes rise-in {
+	from {
+		opacity: 0;
+		transform: translateY(14px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes tile-in {
+	from {
+		opacity: 0;
+		transform: translateY(12px) scale(0.985);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+@media (max-width: 640px) {
+	.contact-list {
+		padding: 1rem;
+		border-radius: 16px;
+	}
+
+	.contact-list__header p {
+		font-size: 1rem;
+	}
+}

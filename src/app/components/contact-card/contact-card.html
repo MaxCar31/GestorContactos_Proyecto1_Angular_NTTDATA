@@ -1,0 +1,20 @@
+<article
+	class="contact-card"
+	[ngClass]="{
+		'contact-card--active': contact.status === 'active',
+		'contact-card--inactive': contact.status === 'inactive',
+		'contact-card--favorite': contact.favorite
+	}"
+>
+	<div class="contact-card__top">
+		<h2>{{ contact.name | contactFormat : 'name' }}</h2>
+		<span class="badge">{{ contact.status | contactFormat : 'status' }}</span>
+	</div>
+
+	<p class="contact-card__email">{{ contact.email | contactFormat : 'email' }}</p>
+	<p class="contact-card__company">Empresa: {{ contact.company }}</p>
+
+	<button type="button" (click)="onToggleFavorite()" class="contact-card__button">
+		{{ contact.favorite ? 'Quitar favorito' : 'Marcar favorito' }}
+	</button>
+</article>

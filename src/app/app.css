@@ -1,0 +1,41 @@
+:host {
+	display: block;
+	min-height: 100dvh;
+}
+
+.app-shell {
+	min-height: 100dvh;
+	padding: clamp(1rem, 2vw, 2rem);
+	position: relative;
+	overflow: hidden;
+}
+
+.app-shell::before,
+.app-shell::after {
+	content: '';
+	position: absolute;
+	border-radius: 999px;
+	z-index: 0;
+	filter: blur(1px);
+}
+
+.app-shell::before {
+	width: 340px;
+	height: 340px;
+	background: radial-gradient(circle, rgba(15, 139, 141, 0.2) 0%, rgba(15, 139, 141, 0) 70%);
+	top: -80px;
+	left: -80px;
+}
+
+.app-shell::after {
+	width: 320px;
+	height: 320px;
+	background: radial-gradient(circle, rgba(255, 169, 77, 0.24) 0%, rgba(255, 169, 77, 0) 70%);
+	right: -90px;
+	bottom: -90px;
+}
+
+.app-shell > * {
+	position: relative;
+	z-index: 1;
+}

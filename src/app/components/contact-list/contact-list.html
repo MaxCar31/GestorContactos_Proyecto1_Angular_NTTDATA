@@ -1,0 +1,25 @@
+<section class="contact-list">
+	<header class="contact-list__header">
+		<p class="contact-list__eyebrow">Dashboard de relaciones</p>
+		<h1>Gestor de Contactos</h1>
+		<p>Listado inicial con Angular usando componentes, directivas, eventos y pipes.</p>
+
+		<div class="contact-list__summary" *ngIf="contacts.length">
+			<span>{{ contacts.length }} total</span>
+			<span>{{ activeCount }} activos</span>
+			<span>{{ favoriteCount }} favoritos</span>
+		</div>
+	</header>
+
+	<p *ngIf="!contacts.length" class="contact-list__empty">
+		Aun no hay contactos para mostrar. Agrega el primero para comenzar.
+	</p>
+
+	<div class="contact-list__grid" *ngIf="contacts.length">
+		<app-contact-card
+			*ngFor="let contact of contacts; trackBy: trackById"
+			[contact]="contact"
+			(toggleFavorite)="onToggleFavorite($event)"
+		></app-contact-card>
+	</div>
+</section>
