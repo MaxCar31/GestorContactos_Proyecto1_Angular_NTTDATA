@@ -73,8 +73,15 @@
 	color: #1f3c58;
 }
 
-.contact-card__button {
+.contact-card__actions {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0.6rem;
 	margin-top: 1rem;
+}
+
+.contact-card__button {
+	margin-top: 0;
 	width: 100%;
 	border: 0;
 	border-radius: 10px;
@@ -88,10 +95,18 @@
 	transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
+.contact-card__button--secondary {
+	background: linear-gradient(120deg, #1f3c58, #314967);
+}
+
 .contact-card__button:hover {
 	transform: translateY(-1px);
 	background: linear-gradient(120deg, #0a6f71, #0f6f85);
 	box-shadow: 0 10px 18px rgba(15, 139, 141, 0.32);
+}
+
+.contact-card__button--secondary:hover {
+	background: linear-gradient(120deg, #132034, #243b55);
 }
 
 .contact-card__button:focus-visible {
@@ -106,5 +121,9 @@
 
 	.contact-card__top h2 {
 		font-size: 1.07rem;
+	}
+
+	.contact-card__actions {
+		grid-template-columns: 1fr;
 	}
 }

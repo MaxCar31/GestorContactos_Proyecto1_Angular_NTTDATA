@@ -4,22 +4,51 @@
 		<h1>Gestor de Contactos</h1>
 		<p>Listado inicial con Angular usando componentes, directivas, eventos y pipes.</p>
 
-		<div class="contact-list__summary" *ngIf="contacts.length">
-			<span>{{ contacts.length }} total</span>
-			<span>{{ activeCount }} activos</span>
-			<span>{{ favoriteCount }} favoritos</span>
-		</div>
+		@if (contacts.length) {
+			<div class="contact-list__summary">
+				<span>{{ contacts.length }} total</span>
+				<span>{{ activeCount }} activos</span>
+				<span>{{ favoriteCount }} favoritos</span>
+			</div>
+		}
 	</header>
 
-	<p *ngIf="!contacts.length" class="contact-list__empty">
-		Aun no hay contactos para mostrar. Agrega el primero para comenzar.
-	</p>
+	@if (contacts.length) {
+		<div class="contact-list__grid">
+			@for (contact of contacts; track contact.id) {
+				<app-contact-card
+					[contact]="contact"
+					(toggleFavorite)="onToggleFavorite($event)"
+					(viewDetail)="onViewDetail($event)"
+				></app-contact-card>
+			}
+		</div>
+	} @else {
+		<p class="contact-list__empty">
+			Aun no hay contactos para mostrar. Agrega el primero para comenzar.
+		</p>
+	}
 
-	<div class="contact-list__grid" *ngIf="contacts.length">
-		<app-contact-card
-			*ngFor="let contact of contacts; trackBy: trackById"
-			[contact]="contact"
-			(toggleFavorite)="onToggleFavorite($event)"
-		></app-contact-card>
-	</div>
+	@if (selectedContact) {
+		<section class="contact-list__detail-panel">
+			<div class="contact-list__detail-bar">
+				<h3>Detalle seleccionado</h3>
+				<button type="button" class="contact-list__close-button" (click)="onCloseDetail()">Cerrar detalle</button>
+			</div>
+
+			@switch (selectedContact.status) {
+				@case ('active') {
+					<p class="contact-list__status-note contact-list__status-note--active">Este contacto se encuentra activo.</p>
+				}
+				@case ('inactive') {
+					<p class="contact-list__status-note contact-list__status-note--inactive">Este contacto está inactivo.</p>
+				}
+				@default {
+					<p class="contact-list__status-note">Estado no definido.</p>
+				}
+			}
+
+			<app-contact-detail [contact]="selectedContact"></app-contact-detail>
+		</section>
+	}
 </section>

@@ -2,14 +2,17 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Contact } from '../../models/contact.model';
 import { ContactCard } from '../contact-card/contact-card';
+import { ContactDetail } from '../contact-detail/contact-detail';
 
 @Component({
   selector: 'app-contact-list',
-  imports: [CommonModule, ContactCard],
+  imports: [CommonModule, ContactCard, ContactDetail],
   templateUrl: './contact-list.html',
   styleUrl: './contact-list.css',
 })
 export class ContactList {
+  selectedContact: Contact | null = null;
+
   contacts: Contact[] = [
     {
       id: 1,
@@ -61,15 +64,19 @@ export class ContactList {
     return this.contacts.filter((contact) => contact.favorite).length;
   }
 
-  trackById(_: number, contact: Contact): number {
-    return contact.id;
-  }
-
   onToggleFavorite(contactId: number): void {
     this.contacts = this.contacts.map((contact) =>
       contact.id === contactId
         ? { ...contact, favorite: !contact.favorite }
         : contact
     );
+  }
+
+  onViewDetail(contact: Contact): void {
+    this.selectedContact = contact;
+  }
+
+  onCloseDetail(): void {
+    this.selectedContact = null;
   }
 }

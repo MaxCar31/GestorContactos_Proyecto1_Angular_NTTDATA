@@ -12,8 +12,13 @@ import { ContactFormatPipe } from '../../pipes/contact-format-pipe';
 export class ContactCard {
   @Input({ required: true }) contact!: Contact;
   @Output() toggleFavorite = new EventEmitter<number>();
+  @Output() viewDetail = new EventEmitter<Contact>();
 
   onToggleFavorite(): void {
     this.toggleFavorite.emit(this.contact.id);
+  }
+
+  onViewDetail(): void {
+    this.viewDetail.emit(this.contact);
   }
 }

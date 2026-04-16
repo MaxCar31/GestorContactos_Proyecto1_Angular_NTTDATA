@@ -1,0 +1,47 @@
+<article
+  class="contact-detail"
+  [ngClass]="{
+    'contact-detail--active': contact.status === 'active',
+    'contact-detail--inactive': contact.status === 'inactive',
+    'contact-detail--favorite': contact.favorite
+  }"
+>
+  <div class="contact-detail__header">
+    <div>
+      <p class="contact-detail__eyebrow">Detalle del contacto</p>
+      <h2>{{ contact.name | contactFormat : 'name' }}</h2>
+      <p class="contact-detail__subtitle">Ficha completa del elemento seleccionado.</p>
+    </div>
+
+    @switch (contact.status) {
+      @case ('active') {
+        <span class="contact-detail__status contact-detail__status--active">Activo</span>
+      }
+      @case ('inactive') {
+        <span class="contact-detail__status contact-detail__status--inactive">Inactivo</span>
+      }
+      @default {
+        <span class="contact-detail__status">Sin estado</span>
+      }
+    }
+  </div>
+
+  <dl class="contact-detail__grid">
+    <div>
+      <dt>Email</dt>
+      <dd>{{ contact.email | contactFormat : 'email' }}</dd>
+    </div>
+    <div>
+      <dt>Empresa</dt>
+      <dd>{{ contact.company }}</dd>
+    </div>
+    <div>
+      <dt>Estado favorito</dt>
+      <dd>{{ contact.favorite ? 'Marcado como favorito' : 'Aún no es favorito' }}</dd>
+    </div>
+    <div>
+      <dt>Identificador</dt>
+      <dd>#{{ contact.id }}</dd>
+    </div>
+  </dl>
+</article>

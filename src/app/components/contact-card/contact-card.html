@@ -14,7 +14,12 @@
 	<p class="contact-card__email">{{ contact.email | contactFormat : 'email' }}</p>
 	<p class="contact-card__company">Empresa: {{ contact.company }}</p>
 
-	<button type="button" (click)="onToggleFavorite()" class="contact-card__button">
-		{{ contact.favorite ? 'Quitar favorito' : 'Marcar favorito' }}
-	</button>
+	<div class="contact-card__actions">
+		<button type="button" (click)="onViewDetail()" class="contact-card__button contact-card__button--secondary">
+			Ver detalle
+		</button>
+		<button type="button" (click)="onToggleFavorite()" class="contact-card__button">
+			{{ contact.favorite ? 'Quitar favorito' : 'Marcar favorito' }}
+		</button>
+	</div>
 </article>
